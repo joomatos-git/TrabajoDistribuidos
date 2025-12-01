@@ -1,5 +1,6 @@
+package GameObjects;
 
-public class Pieza {
+public class Piece {
 	enum Color{
 		BLANCO,
 		NEGRO
@@ -7,6 +8,6 @@ public class Pieza {
 	
 	Color propietario;
 	
-	Casilla posicion;
+	Tile posicion;
 
 }
