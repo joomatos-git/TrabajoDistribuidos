@@ -1,7 +1,7 @@
 package GameObjects;
 
-public class Bishop {
-	
-	public Bishop()
-
+public class Bishop extends Piece {
+    public Bishop(Color color) {
+        super(color);
+    }
 }

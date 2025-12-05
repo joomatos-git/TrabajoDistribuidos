@@ -12,7 +12,7 @@ public class Board {
         setupInitialPieces();
     }
     
-    // Crear todas las casillas vacías
+    // Casillas vacías
     private void initializeTiles() {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
@@ -21,9 +21,9 @@ public class Board {
         }
     }
     
-    // Colocar las piezas en posición inicial
+    // Posición inicial de las piezas
     private void setupInitialPieces() {
-        // Piezas negras (fila 0 y 1)
+        // negras
         tiles[0][0].setPiece(new Rook(Color.BLACK));
         tiles[0][1].setPiece(new Knight(Color.BLACK));
         tiles[0][2].setPiece(new Bishop(Color.BLACK));
@@ -37,7 +37,7 @@ public class Board {
             tiles[1][col].setPiece(new Pawn(Color.BLACK));
         }
         
-        // Piezas blancas (fila 6 y 7)
+        // blancas
         for (int col = 0; col < SIZE; col++) {
             tiles[6][col].setPiece(new Pawn(Color.WHITE));
         }
@@ -52,5 +52,3 @@ public class Board {
         tiles[7][7].setPiece(new Rook(Color.WHITE));
     }
     
-    // Obtener una casilla específica
-    public Tile getTi
