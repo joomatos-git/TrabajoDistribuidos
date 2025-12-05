@@ -2,12 +2,12 @@ package GameObjects;
 
 public class Tile {
     private int row;
-    private int col;
+    private int column;
     private Piece piece;  // null si está vacía
     
     public Tile(int row, int col) {
         this.row = row;
-        this.col = col;
+        this.column = col;
         this.piece = null;
     }
     
@@ -19,12 +19,12 @@ public class Tile {
     public Piece getPiece() { return piece; }
     public void setPiece(Piece piece) { this.piece = piece; }
     public int getRow() { return row; }
-    public int getCol() { return col; }
+    public int getCol() { return column; }
     
     
     @Override
     public String toString() {
-    	return getCharForNumber(col)+row;
+    	return getCharForNumber(column)+row;
     }
     
     
