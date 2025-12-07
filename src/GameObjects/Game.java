@@ -44,6 +44,12 @@ public class Game {
         this.actionHistory = new ArrayList<>();
     }
     
+    public void setNames(String s1, String s2) {
+    	this.whitePlayer = new Player(s1, Color.WHITE);
+    	this.blackPlayer = new Player(s2, Color.WHITE);
+    }
+    
+    
     public boolean submitAction(Color playerColor, Action action) {
         Player player = (playerColor == Color.WHITE) ? whitePlayer : blackPlayer;
         

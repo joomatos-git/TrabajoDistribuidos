@@ -1,92 +1,117 @@
 package Networking;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 
 import Acciones.Action;
 import GameObjects.Game;
+import GameObjects.Game.GameState;
 import Logic.TurnResolver;
 
 public class GameThread implements Runnable {
 
-    private final Socket[] clients;  
+	private final Socket[] clients;
+	private CyclicBarrier barrier = new CyclicBarrier(3);
+	private String[] names = new String[2];
+	private List<Action[]> register = new ArrayList<Action[]>();
+	private Action[] thisTurn = new Action[2];
+	private Game game;
+	private ObjectOutputStream[] out = new ObjectOutputStream[2];
 
-    public GameThread(Socket[] clients) {
-        this.clients = clients;
-    }
+	public GameThread(Socket[] clients) {
+		this.clients = clients;
+	}
 
-    @Override
-    public void run() {
-        System.out.println("GameThread started.");
+	@Override
+	public void run() {
+		System.out.println("Both players joined. Game started."); // debug
+		try {
+			out[0] = new ObjectOutputStream(clients[0].getOutputStream());
+			out[1] = new ObjectOutputStream(clients[1].getOutputStream());
 
-        try (
-            ObjectOutputStream out1 = new ObjectOutputStream(clients[0].getOutputStream());
-            ObjectInputStream in1   = new ObjectInputStream(clients[0].getInputStream());
-            ObjectOutputStream out2 = new ObjectOutputStream(clients[1].getOutputStream());
-            ObjectInputStream in2   = new ObjectInputStream(clients[1].getInputStream());
-        ) {
-            // nombres (handshake para testing al principio)
-            out1.writeObject("WELCOME - send your name (String)");
-            out1.flush();
-            String name1 = (String) in1.readObject();
+			game = new Game("Player1", "Player2"); // hasta que se manden los nombres, pq al crear el thread necesito el
+													// game. Luego game.setName y arreglado
 
-            out2.writeObject("WELCOME - send your name (String)");
-            out2.flush();
-            String name2 = (String) in2.readObject();
+			new Thread(new PlayerThread(clients[0], game, barrier, 0, names, out[0], thisTurn)).start();
+			new Thread(new PlayerThread(clients[1], game, barrier, 1, names, out[1], thisTurn)).start();
 
-            System.out.println("Players: " + name1 + " vs " + name2);
+			// nombres
+			sendBoth("WELCOME - send your name (String)");
+			barrier.await();
+			// ambos han mandado nombre
+			sendBoth("Players: " + names[0] + " vs " + names[1]);
 
-            out1.writeObject("OPPONENT:" + name2);
-            out2.writeObject("OPPONENT:" + name1);
-            out1.flush();
-            out2.flush();
+			// crea juego (será almacenado aqui)
+			game.setNames(names[0], names[1]);
 
-            // crea juego (será almacenado aqui, no se envia a ningun sitio. Manejo solo mandando acciones)
-            Game game = new Game(name1, name2); 
+			// manda tablero inicial (como string para evitar mandar todo el rato el objeto
+			// game y tener que serializar todo)
+			sendBoth(game.toString());
 
-            // manda tablero inicial
-            out1.writeObject(game.toString());
-            out2.writeObject(game.toString());
-            out1.flush();
-            out2.flush();
+			while (game.getState() != GameState.FINISHED) {
+				sendBoth("YOUR_ACTION");
 
-            while (true) {
-                out1.writeObject("YOUR_ACTION");
-                out2.writeObject("YOUR_ACTION");
-                out1.flush();
-                out2.flush();
+				barrier.await();
+				// ambos han mandado accion
 
-                // recibe acciones (se construyen en el cliente a raiz de
-                Action a1 = (Action) in1.readObject();
-                Action a2 = (Action) in2.readObject();
+				// resolver turno según acciones
+				TurnResolver.resolveTurn(game.getBoard(), thisTurn[0], thisTurn[1]);
+				// enviar post-turno
+				sendBoth(game.toString());
 
-                
+				// devolver control a jugadores
+				barrier.await();
 
-                // resolver turno según acciones
-                TurnResolver.resolveTurn(game.getBoard(), a1, a2);
+				System.out.println("Turn resolved and state sent.");
+				register.add(Arrays.copyOf(thisTurn, 2));
+			}
 
-                // enviar post-turno
-                out1.writeObject(game.toString());
-                out2.writeObject(game.toString());
-                out1.flush();
-                out2.flush();
+			sendBoth("Game is over. " + game.getResultSummary());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				clients[0].close();
+				clients[1].close();
+				out[0].close();
+				out[1].close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-                System.out.println("Turn resolved and state sent.");
-            }
+		}
 
-        } catch (Exception e) {
-            System.out.println("GameThread ended due to exception: " + e.getMessage());
-        } finally {
-            System.out.println("Closing game sockets.");
-            try { clients[0].close(); } catch (Exception ignored) {}
-            try { clients[1].close(); } catch (Exception ignored) {}
-        }
-    }
+	}
+
+	private void sendBoth(Object s) {
+		try {
+			out[0].writeObject(s);
+			out[1].writeObject(s);
+			out[0].flush();
+			out[1].flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }
-
-
 
 // notas para mañana. HiloJugador creado en algun punto de aqui para manejar ahi el In/Out.
 // meter cyclicbarriers y countdownlatch en vez de hacerlo con el readObject este potroso que esta puesto aqui
 // XML integration y en teoria lo mas barebones esta ya
-
