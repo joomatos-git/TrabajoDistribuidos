@@ -15,7 +15,7 @@ public class Rook extends Piece {
             return false;
         }
         
-        // Línea recta (horizontal o vertical)
+        // Línea recta 
         if (start.getRow() != end.getRow() && start.getCol() != end.getCol()) {
             return false;
         }

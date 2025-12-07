@@ -27,14 +27,12 @@ public class Tile {
         this.piece = piece;
     }
     
-    // Establece una pieza (para movimientos) con sincronización bidireccional
+    // hecho con sincronización bidireccional porque sino me volvia loco
     public void setPiece(Piece piece) {
-        // 1. Limpiar la pieza anterior de esta casilla
         if (this.piece != null && this.piece != piece) {
             this.piece.currentTile = null;
         }
         
-        // Limpiar la casilla anterior de la nueva pieza
         if (piece != null && piece.currentTile != this) {
             Tile oldTile = piece.currentTile;
             if (oldTile != null) {
@@ -43,7 +41,6 @@ public class Tile {
             piece.currentTile = this;
         }
         
-        // 3. Establecer la nueva relación
         this.piece = piece;
     }
     

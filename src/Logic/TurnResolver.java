@@ -124,7 +124,7 @@ public class TurnResolver {
         Piece victim = targetTile.getPiece();
 
         if (victim != null && victim.getColor() != attacker.getColor()) {
-            victim.kill(board); // ← ESTA ES LA LÍNEA CORRECTA
+            victim.kill(board); 
 
             targetTile.setPiece(attacker);
             startTile.setPiece(null);
@@ -188,7 +188,6 @@ public class TurnResolver {
         if (attackerTile == null) return;
 
         if (targetTile.isEmpty()) {
-            // Attack to empty square: attacker gets stunned but still moves there
             attacker.setStunned(true);
             System.out.println(attacker + " atacó al vacío en " + targetTile + ". ¡Aturdido!");
             return;
@@ -200,7 +199,6 @@ public class TurnResolver {
             return;
         }
 
-        // capture
         if(!attackers.contains(victim)) {
         	System.out.println(attacker + " captura a " + victim + " en " + targetTile);
             victim.kill(board); 
@@ -213,7 +211,7 @@ public class TurnResolver {
         
     }
     
-    
+    // separado en dos porque podía pasar que atacara primero uno y entonces hacia nula al otro que ataca pero no lo captura en fin una movida
     private static void executeAttackMovements(Board board, Action action1, Action action2) {
         Piece attacker1 = action1.getPiece();
         Piece attacker2 = action2.getPiece();

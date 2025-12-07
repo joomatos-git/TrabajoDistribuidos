@@ -18,7 +18,7 @@ public class Pawn extends Piece {
         int rowDiff = end.getRow() - start.getRow();
         int colDiff = Math.abs(end.getCol() - start.getCol());
         
-        // MOVE solo puede ser en línea recta hacia adelante
+        // solo linea recta
         if (colDiff != 0) {
             return false;
         }
@@ -28,7 +28,7 @@ public class Pawn extends Piece {
             return true;
         }
         
-        // 2 casillas desde posición inicial
+        // 2 casillas SOLO desde posición inicial
         int startRow = (this.color == Color.WHITE) ? 1 : 6;
         if (start.getRow() == startRow && rowDiff == 2 * direction) {
             int middleRow = start.getRow() + direction;
@@ -48,7 +48,7 @@ public class Pawn extends Piece {
         int rowDiff = end.getRow() - start.getRow();
         int colDiff = Math.abs(end.getCol() - start.getCol());
         
-        // ATTACK solo en diagonal
+        // solo en diagonal
         if (rowDiff == direction && colDiff == 1) {
             return true;
         }

@@ -1,5 +1,5 @@
 package Acciones;
 
 public enum ActionType{
-	MOVE,ATTACK
+	MOVE,ATTACK,WITHDRAW
 }

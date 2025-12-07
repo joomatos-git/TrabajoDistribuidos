@@ -145,38 +145,35 @@ public class Board {
     }
     
     public void print() {
-        int cellWidth = 3; // width of each cell
+        int cellWidth = 3; 
 
-        // Print column letters
-        System.out.print("   "); // padding for row numbers
+        System.out.print("   "); 
         for (int col = 0; col < SIZE; col++) {
             char colLetter = (char) ('A' + col);
             System.out.print(String.format("%-" + cellWidth + "s", colLetter));
         }
         System.out.println();
 
-        // Print board
-        for (int row = 0; row < SIZE; row++) {
-            int displayRow = SIZE - row; // Chess rows 8-1
 
-            // Print horizontal line
+        for (int row = 0; row < SIZE; row++) {
+            int displayRow = SIZE - row; 
+
+
             System.out.print("  ");
             for (int col = 0; col < SIZE; col++) {
                 System.out.print("+" + "-".repeat(cellWidth));
             }
             System.out.println("+");
 
-            // Print row number and pieces
             System.out.print(displayRow + " ");
             for (int col = 0; col < SIZE; col++) {
-                Piece piece = tiles[SIZE - 1 - row][col].getPiece(); // row reversed
+                Piece piece = tiles[SIZE - 1 - row][col].getPiece();
                 String pieceStr = (piece == null) ? "" : piece.toString();
                 System.out.print("|" + String.format("%-" + cellWidth + "s", pieceStr));
             }
             System.out.println("|");
         }
 
-        // Bottom line
         System.out.print("  ");
         for (int col = 0; col < SIZE; col++) {
             System.out.print("+" + "-".repeat(cellWidth));
@@ -186,6 +183,49 @@ public class Board {
         System.out.println("Piezas blancas vivas: " + whitePieces.size());
         System.out.println("Piezas negras vivas: " + blackPieces.size());
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        int cellWidth = 3;
+
+        sb.append("   ");
+        for (int col = 0; col < SIZE; col++) {
+            char colLetter = (char) ('A' + col);
+            sb.append(String.format("%-" + cellWidth + "s", colLetter));
+        }
+        sb.append("\n");
+
+        for (int row = 0; row < SIZE; row++) {
+            sb.append("  ");
+            for (int col = 0; col < SIZE; col++) {
+                sb.append("+").append("-".repeat(cellWidth));
+            }
+            sb.append("+\n");
+
+            int displayRow = SIZE - row;
+            sb.append(displayRow).append(" ");
+
+            for (int col = 0; col < SIZE; col++) {
+                Piece piece = tiles[SIZE - 1 - row][col].getPiece();
+                String pieceStr = (piece == null) ? "" : piece.toString();
+                sb.append("|").append(String.format("%-" + cellWidth + "s", pieceStr));
+            }
+            sb.append("|\n");
+        }
+
+        sb.append("  ");
+        for (int col = 0; col < SIZE; col++) {
+            sb.append("+").append("-".repeat(cellWidth));
+        }
+        sb.append("+\n");
+
+        sb.append("Piezas blancas vivas: ").append(whitePieces.size()).append("\n");
+        sb.append("Piezas negras vivas: ").append(blackPieces.size()).append("\n");
+
+        return sb.toString();
+    }
+
 
     
     //por si me da tiempo a hacer interfaz para hacer algo rollo chess.com
@@ -202,7 +242,7 @@ public class Board {
         if (piece instanceof Bishop) return 3;
         if (piece instanceof Rook) return 5;
         if (piece instanceof Queen) return 9;
-        if (piece instanceof King) return 0; // Rey no tiene "valor" de captura
+        if (piece instanceof King) return 0; // Rey no tiene "valor" de captura porque pierdes si muere entonces un poco tonteria
         return 0;
     }
     

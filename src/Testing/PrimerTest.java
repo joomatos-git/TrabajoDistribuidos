@@ -19,7 +19,7 @@ public class PrimerTest {
 
         while (true) {
             System.out.println("\n=== TABLERO ACTUAL ===");
-            board.print();
+            System.out.println(board.toString());
 
             System.out.println("\nJugador 1, introduce tu acción:");
             Action action1;
@@ -38,7 +38,7 @@ public class PrimerTest {
             TurnResolver.resolveTurn(board, action1, action2);
 
             System.out.println("\n=== TABLERO TRAS TURNO ===");
-            board.print();
+            System.out.println(board.toString());
             
             System.out.println("\nPiezas capturadas:");
             for (Piece p : board.getCapturedPieces()) {

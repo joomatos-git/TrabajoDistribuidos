@@ -16,12 +16,12 @@ public class King extends Piece {
         int rowDiff = Math.abs(start.getRow() - end.getRow());
         int colDiff = Math.abs(start.getCol() - end.getCol());
         
-        // Movimiento normal (1 casilla)
+        // Movimiento normal 
         if (rowDiff <= 1 && colDiff <= 1) {
             return true;
         }
         
-        // Enroque (opcional)
+        // Enroque 
         return isValidCastling(board, start, end);
     }
     

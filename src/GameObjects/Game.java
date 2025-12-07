@@ -2,6 +2,10 @@ package GameObjects;
 
 import Logic.TurnResolver;
 import Logic.GameValidator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import Acciones.Action;
 
 public class Game {
@@ -9,6 +13,7 @@ public class Game {
     private Player whitePlayer;
     private Player blackPlayer;
     private int turnNumber;
+    private List<Action> actionHistory;
     private GameState state;
     private GameResult result; 
     
@@ -36,6 +41,7 @@ public class Game {
         this.turnNumber = 1;
         this.state = GameState.IN_PROGRESS;
         this.result = GameResult.IN_PROGRESS;
+        this.actionHistory = new ArrayList<>();
     }
     
     public boolean submitAction(Color playerColor, Action action) {

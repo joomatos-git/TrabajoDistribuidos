@@ -5,7 +5,7 @@ public abstract class Piece {
     protected Color color;
     protected boolean stunned;
     protected boolean alive;
-    Tile currentTile; // Package-private para sincronización con Tile
+    Tile currentTile; // para sincronización con Tile. Bidireccional y tal
     
     public Piece(Color color, Tile initialTile) {
         this.color = color;
