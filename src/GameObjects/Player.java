@@ -5,8 +5,8 @@ import Acciones.Action;
 public class Player {
     private String name;
     private Color color;
-    private Action pendingAction; // La acción que envió este turno
-    private boolean isReady; // Si ya envió su acción este turno
+    private Action pendingAction;
+    private boolean isReady;
     
     public Player(String name, Color color) {
         this.name = name;

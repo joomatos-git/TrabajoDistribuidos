@@ -3,8 +3,8 @@ package GameObjects;
 public class King extends Piece {
     private boolean hasMoved = false;
     
-    public King(Color color) {
-        super(color);
+    public King(Color color, Tile initialTile) {
+        super(color, initialTile);
     }
     
     @Override
@@ -16,12 +16,12 @@ public class King extends Piece {
         int rowDiff = Math.abs(start.getRow() - end.getRow());
         int colDiff = Math.abs(start.getCol() - end.getCol());
         
-        // Movimiento normal
+        // Movimiento normal (1 casilla)
         if (rowDiff <= 1 && colDiff <= 1) {
             return true;
         }
         
-        // Enroque 
+        // Enroque (opcional)
         return isValidCastling(board, start, end);
     }
     
@@ -30,14 +30,13 @@ public class King extends Piece {
             return false;
         }
         
-        // solo misma fila aunq es un poco redundante por hasMoved, pero prefiero curarme en salud
         if (start.getRow() != end.getRow()) {
             return false;
         }
         
         int colDiff = end.getCol() - start.getCol();
         
-        // Enroque corto (hacia la derecha)
+        // Enroque corto
         if (colDiff == 2) {
             Tile rookTile = board.getTile(start.getRow(), 7);
             if (rookTile.isEmpty() || !(rookTile.getPiece() instanceof Rook)) {
@@ -47,12 +46,11 @@ public class King extends Piece {
             if (rook.hasMoved()) {
                 return false;
             }
-            // Verificar que las casillas intermedias estén vacías
             return board.getTile(start.getRow(), 5).isEmpty() &&
                    board.getTile(start.getRow(), 6).isEmpty();
         }
         
-        // Enroque largo (hacia la izquierda)
+        // Enroque largo
         if (colDiff == -2) {
             Tile rookTile = board.getTile(start.getRow(), 0);
             if (rookTile.isEmpty() || !(rookTile.getPiece() instanceof Rook)) {
@@ -82,5 +80,4 @@ public class King extends Piece {
     protected String getName() {
         return "K";
     }
-
 }

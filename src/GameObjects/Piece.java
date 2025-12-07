@@ -1,31 +1,31 @@
 package GameObjects;
 
 public abstract class Piece {
-	
-	
-	
-	enum Color{
-		WHITE,
-		BLACK
-	}
-	
+    
     protected Color color;
     protected boolean stunned;
+    protected boolean alive;
+    Tile currentTile; // Package-private para sincronización con Tile
     
-    public Piece(Color color) {
+    public Piece(Color color, Tile initialTile) {
         this.color = color;
         this.stunned = false;
+        this.alive = true;
+        this.currentTile = initialTile;
+        
+        if (initialTile != null) {
+            initialTile.placePieceDirectly(this);
+        }
     }
     
-    // Método para validar movimiento
+    // movimiento
     public abstract boolean canMove(Board board, Tile start, Tile end);
     
-    // Método para validar ataque (por defecto, igual que moverse. Solo existe para los peones.)
+    // ataque (por defecto igual que moverse, excepto para peones)
     public boolean canAttack(Board board, Tile start, Tile end) {
         return canMove(board, start, end);
     }
     
-    // Método para verificar si el camino está despejado segun el movimiento que han elegido (para torre, alfil, reina)
     protected boolean isPathClear(Board board, Tile start, Tile end) {
         int rowStart = start.getRow();
         int colStart = start.getCol();
@@ -52,6 +52,20 @@ public abstract class Piece {
     public Color getColor() { return color; }
     public boolean isStunned() { return stunned; }
     public void setStunned(boolean stunned) { this.stunned = stunned; }
+    public boolean isAlive() { return alive; }
+    
+    public void kill(Board board) {
+        this.alive = false;
+        if (this.currentTile != null) {
+            this.currentTile.setPiece(null);
+        }
+        board.capturePiece(this); 
+    }
+    
+    
+    public Tile getCurrentTile() {
+        return currentTile;
+    }
     
     @Override
     public String toString() {
@@ -59,6 +73,5 @@ public abstract class Piece {
         return "" + colorChar + getName();
     }
     
-    // Cada pieza retorna su símbolo (Peon = P, Caballo = N(kNight)...) y un numero, para luego poder identificar cual mueves y tal si lo hago por consola. Los peones seran P1-P8 y asi
     protected abstract String getName();
 }

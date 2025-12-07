@@ -1,27 +1,25 @@
 package Acciones;
 
+import GameObjects.Piece;
 import GameObjects.Tile;
 
 public class Action {
     private ActionType type;
-    private Tile origin;
+    private Piece piece;
     private Tile destination;
     
-    
-    public Action(ActionType t, Tile o, Tile d) {
-    	this.type=t;
-    	this.origin=o;
-    	this.destination=d;
+    public Action(ActionType type, Piece piece, Tile destination) {
+        this.type = type;
+        this.piece = piece;
+        this.destination = destination;
     }
     
-    // Getters
     public ActionType getType() { return type; }
-    public Tile getOrigin() { return origin; }
+    public Piece getPiece() { return piece; }
     public Tile getDestination() { return destination; }
-    
     
     @Override
     public String toString() {
-        return type + ": " + origin.toString() + "->" + destination.toString();
+        return type + ": " + piece + " -> " + destination.toString();
     }
 }

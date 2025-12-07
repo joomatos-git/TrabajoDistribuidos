@@ -1,17 +1,15 @@
 package GameObjects;
 
 public class Pawn extends Piece {
+    private int code;
     
-	private int code;
-	
-    public Pawn(Color color, int c) {
-    	super(color);
-    	this.code = c;
+    public Pawn(Color color, Tile initialTile, int code) {
+        super(color, initialTile);
+        this.code = code;
     }
     
     @Override
     public boolean canMove(Board board, Tile start, Tile end) {
-        // No autocapturas
         if (!end.isEmpty() && end.getPiece().getColor() == this.color) {
             return false;
         }
@@ -20,17 +18,17 @@ public class Pawn extends Piece {
         int rowDiff = end.getRow() - start.getRow();
         int colDiff = Math.abs(end.getCol() - start.getCol());
         
-        // linea recta hacia delante
+        // MOVE solo puede ser en línea recta hacia adelante
         if (colDiff != 0) {
-            return false; // No puede moverse en diagonal
+            return false;
         }
         
-        // 1 casilla (no inicio)
+        // 1 casilla hacia adelante
         if (rowDiff == direction && end.isEmpty()) {
             return true;
         }
         
-        // 2 casillas (solo inicio)
+        // 2 casillas desde posición inicial
         int startRow = (this.color == Color.WHITE) ? 1 : 6;
         if (start.getRow() == startRow && rowDiff == 2 * direction) {
             int middleRow = start.getRow() + direction;
@@ -42,7 +40,6 @@ public class Pawn extends Piece {
     
     @Override
     public boolean canAttack(Board board, Tile start, Tile end) {
-        // No puedes atacar tu propia pieza
         if (!end.isEmpty() && end.getPiece().getColor() == this.color) {
             return false;
         }
@@ -51,9 +48,9 @@ public class Pawn extends Piece {
         int rowDiff = end.getRow() - start.getRow();
         int colDiff = Math.abs(end.getCol() - start.getCol());
         
-        // ATTACK solo puede ser en diagonal (1 casilla adelante, 1 a los lados)
+        // ATTACK solo en diagonal
         if (rowDiff == direction && colDiff == 1) {
-            return true; // Puede atacar casillas vacías
+            return true;
         }
         
         return false;
@@ -61,6 +58,6 @@ public class Pawn extends Piece {
     
     @Override
     protected String getName() {
-        return 'P'+String.valueOf(code);
+        return "P" + String.valueOf(code);
     }
 }
