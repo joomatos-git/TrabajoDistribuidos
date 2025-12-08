@@ -80,7 +80,7 @@ public class Game implements Serializable {
         return whitePlayer.isReady() && blackPlayer.isReady();
     }
     
-    private void resolveTurn() {
+    public void resolveTurn() {
         Action whiteAction = whitePlayer.getPendingAction();
         Action blackAction = blackPlayer.getPendingAction();
         

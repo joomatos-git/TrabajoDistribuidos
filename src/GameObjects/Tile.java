@@ -53,7 +53,7 @@ public class Tile implements Serializable{
     
     @Override
     public String toString() {
-        return getCharForNumber(column) + row;
+        return getCharForNumber(column) + (row+1);
     }
     
     private String getCharForNumber(int i) {

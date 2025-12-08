@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 
 import Acciones.Action;
+import GameObjects.Color;
 import GameObjects.Game;
 import Logic.TurnResolver;
 import XML.XMLGameManager;
@@ -45,7 +46,7 @@ public class GameThread implements Runnable {
             
             // Configurar juego
             game.setNames(names[0], names[1]);
-            sendBoth("Players: " + names[0] + " vs " + names[1]);
+            sendBoth("Players: " + names[0] + " (white)" + " vs " + names[1] + " (black)");
             sendBoth("GAME_START");
             sendBoth(game.getBoard());
             
@@ -68,15 +69,26 @@ public class GameThread implements Runnable {
                 System.out.println("Acción P2: " + thisTurn[1]);
                 
                 // Resolver turno
-                TurnResolver.resolveTurn(game.getBoard(), thisTurn[0], thisTurn[1]);
+                if(thisTurn[0].getPiece().getColor()!=Color.WHITE||thisTurn[1].getPiece().getColor()!=Color.BLACK) {
+                	sendBoth("WRONG_ACTION");
+                }
+                else {
+                	game.submitAction(Color.WHITE, thisTurn[0]);
+                	game.submitAction(Color.BLACK, thisTurn[1]);
+                    game.resolveTurn();
+                    gameHistory.add(new Action[] {thisTurn[0], thisTurn[1]});
+
+                }
                 
                 // debug tablero después
                 System.out.println("Tablero después de resolver:");
                 System.out.println(game.getBoard().toString());
                 
-                gameHistory.add(new Action[] {thisTurn[0], thisTurn[1]});
                 
-                barrier.await(); // Turno resuelto
+                
+                barrier.await(); // Turno resuelto o fallado si intentan mover otra cosa
+                
+                
             }
             
             // Fin

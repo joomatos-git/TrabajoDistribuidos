@@ -154,6 +154,13 @@ public class Client {
                            
                            System.out.println("Acción enviada. Esperando...");
                        }
+                       
+                       if ("WRONG_ACTION".equals(msgStr)) {
+                           System.out.println("Alguien ha intentado mover una pieza del otro color.");
+                           
+                       }
+                       
+                       
                    }
                }
 
@@ -196,7 +203,7 @@ public class Client {
                 int destCol = destColStr.charAt(0) - 'A';
                 
                 if (!board.isValidPosition(destRow, destCol)) {
-                    System.out.println("❌ Posición inválida");
+                    System.out.println("Posición inválida");
                     continue;
                 }
                 
@@ -210,14 +217,14 @@ public class Client {
                 Action action = new Action(type, piece, destination);
                 
                 if (!GameValidator.isValidAction(board, action)) {
-                    System.out.println("❌ Movimiento inválido");
+                    System.out.println("Movimiento inválido");
                     continue;
                 }
                 
                 return action;
                 
             } catch (Exception e) {
-                System.out.println("❌ Error en input: " + e.getMessage());
+                System.out.println("Error en input: " + e.getMessage());
             }
         }
     }
