@@ -97,7 +97,7 @@ public class Game implements Serializable {
         checkGameOver();
     }
     
-    private void checkGameOver() {
+    public void checkGameOver() {
         // si algún rey está muerto
         boolean whiteKingAlive=true;
     	for(Piece p:board.getCapturedPieces()) {

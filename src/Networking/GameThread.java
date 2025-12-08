@@ -73,12 +73,16 @@ public class GameThread implements Runnable {
                 	sendBoth("WRONG_ACTION");
                 }
                 else {
-                	game.submitAction(Color.WHITE, thisTurn[0]);
-                	game.submitAction(Color.BLACK, thisTurn[1]);
-                    game.resolveTurn();
-                    gameHistory.add(new Action[] {thisTurn[0], thisTurn[1]});
+                	Action[] copy = new Action[] {
+                		    new Action(thisTurn[0].getType(), thisTurn[0].getPiece(), thisTurn[0].getDestination()),                 		    new Action(thisTurn[1].getType(),thisTurn[1].getPiece(), thisTurn[1].getDestination())
+                		};
+                		gameHistory.add(copy);
+
+                    TurnResolver.resolveTurn(game.getBoard(), thisTurn[0], thisTurn[1]);
 
                 }
+                
+                game.checkGameOver();
                 
                 // debug tablero después
                 System.out.println("Tablero después de resolver:");
@@ -108,8 +112,6 @@ public class GameThread implements Runnable {
             try {
                 out[0].close();
                 out[1].close();
-                clients[0].close();
-                clients[1].close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
