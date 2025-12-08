@@ -19,7 +19,7 @@ import Logic.TurnResolver;
 
 // generar texto a partir de las peticiones de HTTPServer
 public class HTTPGameReader {
-    private static final String XML_FILE = "C:\\Users\\Joseba\\eclipse-workspace\\TrabajoDistribuidos\\src\\XML\\Games.xml";
+    private static final String XML_FILE = "src/XML/Games.xml";
     
 
     public static String getGamesList() throws Exception {

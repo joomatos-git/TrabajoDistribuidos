@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE games SYSTEM "C:\Users\Joseba\eclipse-workspace\TrabajoDistribuidos\src\XML\Partida.dtd">
+<!DOCTYPE games SYSTEM "Partida.dtd">
 <games>
   	
   <!-- partida de prueba generada "a mano" no guardada para testing. No ejecuta bien -->

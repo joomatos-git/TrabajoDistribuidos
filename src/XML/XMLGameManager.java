@@ -27,8 +27,8 @@ import GameObjects.Piece;
 
 
 public class XMLGameManager {
-    private static final String XML_FILE = "C:\\Users\\Joseba\\eclipse-workspace\\TrabajoDistribuidos\\src\\XML\\Games.xml";
-    private static final String DTD_FILE = "C:\\Users\\Joseba\\eclipse-workspace\\TrabajoDistribuidos\\src\\XML\\Partida.dtd";
+    private static final String XML_FILE = "src/XML/Games.xml";
+    private static final String DTD_FILE = "src/XML/Partida.dtd";
     
 
     public static void saveGame(String player1, String player2, 
