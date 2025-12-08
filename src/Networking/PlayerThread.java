@@ -12,9 +12,7 @@ import GameObjects.Game;
 import GameObjects.Piece;
 import GameObjects.Tile;
 
-/**
- * Thread que TRADUCE las Actions del cliente a Actions con objetos del servidor.
- */
+
 public class PlayerThread implements Runnable {
     private Socket player;
     private CyclicBarrier barrier;
@@ -41,7 +39,7 @@ public class PlayerThread implements Runnable {
         try {
             in = new ObjectInputStream(player.getInputStream());
             
-            // Recibir nombre
+            // nombre
             Object msg = in.readObject();
             names[id] = (String) msg;
             
@@ -52,21 +50,20 @@ public class PlayerThread implements Runnable {
             while (game.getState() != Game.GameState.FINISHED) {
                 barrier.await(); // Turno empieza
                 
-                // Recibir acción (tiene objetos "viejos" del cliente)
+                // acción 
                 Action clientAction = (Action) in.readObject();
                 
-                // TRADUCIR: convertir a Action con objetos del servidor
+                // TRADUCIR: convertir a Action con objetos del servidor, en vez de con los de la copia que no estan aqui.
                 Action serverAction = translateAction(clientAction, game.getBoard());
                 
                 if (serverAction == null) {
-                    System.out.println("⚠️ Jugador " + (id + 1) + " envió acción inválida");
-                    // Por ahora, crear acción dummy (o podrías pedir otra)
+                    System.out.println("Jugador " + (id + 1) + " envió acción inválida");
                 }
                 
                 actionPerformed[id] = serverAction;
                 
-                barrier.await(); // Ambas acciones recibidas
-                barrier.await(); // Turno resuelto
+                barrier.await(); // acciones recibidas
+                barrier.await(); // resuelto
             }
             
         } catch (Exception e) {

@@ -6,10 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Servidor que acepta conexiones de clientes y crea partidas.
- * Cada partida se maneja en su propio GameThread.
- */
+
 public class Server {
     private static final int PORT = 5000;
     

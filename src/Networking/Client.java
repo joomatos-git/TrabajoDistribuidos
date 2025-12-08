@@ -12,10 +12,7 @@ import GameObjects.Piece;
 import GameObjects.Tile;
 import Logic.GameValidator;
 
-/**
- * Cliente que recibe Board serializado y crea Actions.
- * Las Actions tienen objetos "viejos" pero el servidor las traducirá.
- */
+
 public class Client {
     private static final String HOST = "localhost";
     private static final int PORT = 5000;
@@ -28,7 +25,7 @@ public class Client {
 
             System.out.println("=== CONECTADO AL SERVIDOR ===\n");
 
-            // 1. Enviar nombre
+            //  nombre
             Object msg = in.readObject();
             if ("SEND_NAME".equals(msg)) {
                 System.out.print("Introduce tu nombre: ");
@@ -37,7 +34,7 @@ public class Client {
                 out.flush();
             }
 
-            // 2. Recibir info inicial
+            // info inicial
             String playersInfo = (String) in.readObject();
             System.out.println("\n" + playersInfo);
 
@@ -48,7 +45,7 @@ public class Client {
                 System.out.println(initialBoard.toString());
             }
 
-            // 3. Loop principal
+            // Loop del juego
             while (true) {
                 Object turnMsg = in.readObject();
                 
@@ -61,16 +58,16 @@ public class Client {
                     }
                     
                     if ("YOUR_TURN".equals(msgStr)) {
-                        // Recibir Board (será una copia, pero sirve para ver el estado)
+                        // Board (es como una copia, pero luego en el thread lo convierto todo asi que da igual. No sabia como hacerlo sino)
                         Board board = (Board) in.readObject();
                         
                         System.out.println("\n=== TU TURNO ===");
                         System.out.println(board.toString());
                         
-                        // Crear acción con la copia del Board
+                        // Crear acción 
                         Action action = collectValidAction(board, sc);
                         
-                        // Enviar acción (el servidor la traducirá)
+                        // Enviar acción 
                         out.writeObject(action);
                         out.flush();
                         

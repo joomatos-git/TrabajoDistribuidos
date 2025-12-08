@@ -26,7 +26,6 @@ public class GameThread implements Runnable {
     @Override
     public void run() {
         try {
-            // Setup
             out[0] = new ObjectOutputStream(clients[0].getOutputStream());
             out[1] = new ObjectOutputStream(clients[1].getOutputStream());
             
@@ -48,7 +47,7 @@ public class GameThread implements Runnable {
             
             barrier.await();
             
-            // Loop del juego
+            // juego
             while (game.getState() != Game.GameState.FINISHED) {
                 // Enviar turno
                 sendBoth("YOUR_TURN");
@@ -60,14 +59,14 @@ public class GameThread implements Runnable {
                 barrier.await(); // Inicio de turno
                 barrier.await(); // Acciones recibidas
                 
-                // Debug: mostrar acciones
+                // debug 
                 System.out.println("Acción P1: " + thisTurn[0]);
                 System.out.println("Acción P2: " + thisTurn[1]);
                 
                 // Resolver turno
                 TurnResolver.resolveTurn(game.getBoard(), thisTurn[0], thisTurn[1]);
                 
-                // Debug: mostrar tablero después
+                // debug tablero después
                 System.out.println("Tablero después de resolver:");
                 System.out.println(game.getBoard().toString());
                 
