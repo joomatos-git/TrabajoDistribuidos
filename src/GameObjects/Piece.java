@@ -1,8 +1,11 @@
 package GameObjects;
 
-public abstract class Piece {
+import java.io.Serializable;
+
+public abstract class Piece implements Serializable{
     
-    protected Color color;
+	private static final long serialVersionUID = 1L;
+	protected Color color;
     protected boolean stunned;
     protected boolean alive;
     Tile currentTile; // para sincronización con Tile. Bidireccional y tal

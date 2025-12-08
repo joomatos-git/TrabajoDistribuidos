@@ -1,9 +1,13 @@
 package GameObjects;
 
+import java.io.Serializable;
+
 import Acciones.Action;
 
-public class Player {
-    private String name;
+public class Player implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private String name;
     private Color color;
     private Action pendingAction;
     private boolean isReady;

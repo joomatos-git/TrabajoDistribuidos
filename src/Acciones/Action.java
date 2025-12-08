@@ -1,10 +1,14 @@
 package Acciones;
 
+import java.io.Serializable;
+
 import GameObjects.Piece;
 import GameObjects.Tile;
 
-public class Action {
-    private ActionType type;
+public class Action implements Serializable {
+    
+	private static final long serialVersionUID = 1L;
+	private ActionType type;
     private Piece piece;
     private Tile destination;
     

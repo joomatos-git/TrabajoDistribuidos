@@ -1,15 +1,17 @@
 package GameObjects;
 
-import Logic.TurnResolver;
-import Logic.GameValidator;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import Acciones.Action;
+import Logic.GameValidator;
+import Logic.TurnResolver;
 
-public class Game {
-    private Board board;
+public class Game implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private Board board;
     private Player whitePlayer;
     private Player blackPlayer;
     private int turnNumber;
@@ -84,6 +86,9 @@ public class Game {
         
         TurnResolver.resolveTurn(board, whiteAction, blackAction);
         
+        
+        actionHistory.add(whiteAction);
+        actionHistory.add(blackAction);
         whitePlayer.clearAction();
         blackPlayer.clearAction();
         

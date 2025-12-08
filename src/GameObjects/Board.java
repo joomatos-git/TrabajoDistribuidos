@@ -1,12 +1,15 @@
 package GameObjects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Board {
-    private static final int SIZE = 8;
+public class Board implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private static final int SIZE = 8;
     private Tile[][] tiles;
     private List<Piece> whitePieces;
     private List<Piece> blackPieces;
@@ -188,7 +191,7 @@ public class Board {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int cellWidth = 3;
-
+        
         sb.append("   ");
         for (int col = 0; col < SIZE; col++) {
             char colLetter = (char) ('A' + col);

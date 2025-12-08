@@ -1,5 +1,7 @@
 package Acciones;
 
-public enum ActionType{
+import java.io.Serializable;
+
+public enum ActionType implements Serializable{
 	MOVE,ATTACK,WITHDRAW
 }
