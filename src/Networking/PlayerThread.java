@@ -68,15 +68,8 @@ public class PlayerThread implements Runnable {
             
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (in != null) in.close();
-                if (out != null) out.close();
-                if (player != null) player.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        } 
+        
     }
     
     // necesario pq sino no se cambiaban las piezas ya que pieza era del board serializado entonces se liaba un poco la cosa.

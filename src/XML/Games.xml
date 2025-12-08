@@ -1,6 +1,99 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE games SYSTEM "Partida.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE games SYSTEM "C:\Users\Joseba\eclipse-workspace\TrabajoDistribuidos\src\XML\Partida.dtd">
 <games>
+  	
+  <!-- partida de prueba generada "a mano" no guardada para testing. No ejecuta bien -->
+      
+  <game date="2025-12-08" id="game1">
+            
+    <players>
+                  
+      <white>juan</white>
+                  
+      <black>pepe</black>
+              
+    </players>
+            
+    <turns>
+                  
+      <!-- Turno 1 -->
+                  
+      <turn number="1">
+                        
+        <whiteAction fromCol="2" fromRow="2" piece="WP2" toCol="1" toRow="4" type="MOVE"/>
+                        
+        <blackAction fromCol="6" fromRow="7" piece="BP7" toCol="6" toRow="5" type="MOVE"/>
+                    
+      </turn>
+                  
+      <!-- Turno 2 -->
+                  
+      <turn number="2">
+                        
+        <whiteAction fromCol="1" fromRow="3" piece="WP2" toCol="2" toRow="4" type="ATTACK"/>
+                        
+        <blackAction fromCol="1" fromRow="7" piece="BN1" toCol="2" toRow="5" type="MOVE"/>
+                    
+      </turn>
+                  
+      <!-- Turno 3 -->
+                  
+      <turn number="3">
+                        
+        <whiteAction fromCol="3" fromRow="0" piece="WQ" toCol="5" toRow="2" type="MOVE"/>
+                        
+        <blackAction fromCol="4" fromRow="6" piece="BP5" toCol="5" toRow="5" type="ATTACK"/>
+                    
+      </turn>
+                  
+      <!-- Turno 4 -->
+                  
+      <turn number="4">
+                        
+        <whiteAction fromCol="5" fromRow="2" piece="WQ" toCol="4" toRow="6" type="ATTACK"/>
+                        
+        <blackAction fromCol="5" fromRow="6" piece="BP6" toCol="5" toRow="5" type="MOVE"/>
+                    
+      </turn>
+                  
+      <!-- Turno 5 -->
+                  
+      <turn number="5">
+                        
+        <whiteAction fromCol="4" fromRow="6" piece="WQ" toCol="4" toRow="7" type="ATTACK"/>
+                        
+        <blackAction fromCol="6" fromRow="5" piece="BP7" toCol="6" toRow="4" type="MOVE"/>
+                    
+      </turn>
+              
+    </turns>
+            
+    <result winner="WHITE">WHITE_WINS</result>
+        
+  </game>
   
+  
+    <!-- partida de prueba guardada a base de jugar una entera.-->
+  
+  <game date="2025-12-08 17:55:11" id="game_1765212911138">
+    <players>
+      <white>albert</white>
+      <black>juan</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction fromCol="5" fromRow="4" piece="WP5" toCol="5" toRow="4" type="MOVE"/>
+        <blackAction fromCol="4" fromRow="4" piece="BP5" toCol="5" toRow="5" type="MOVE"/>
+      </turn>
+      <turn number="2">
+        <whiteAction fromCol="5" fromRow="8" piece="WQ" toCol="8" toRow="5" type="MOVE"/>
+        <blackAction fromCol="6" fromRow="6" piece="BP6" toCol="6" toRow="6" type="MOVE"/>
+      </turn>
+      <turn number="3">
+        <whiteAction fromCol="5" fromRow="8" piece="WQ" toCol="5" toRow="8" type="ATTACK"/>
+        <blackAction fromCol="4" fromRow="4" piece="BP5" toCol="4" toRow="4" type="ATTACK"/>
+      </turn>
+    </turns>
+    <result winner="WHITE">¡albert (BLANCAS) gana!</result>
+  </game>
 </games>

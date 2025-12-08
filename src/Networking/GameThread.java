@@ -103,15 +103,15 @@ public class GameThread implements Runnable {
             XMLGameManager.saveGame(names[0], names[1], gameHistory, result);
 
             
-            
-            Thread.sleep(500);
-            
+                        
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 out[0].close();
                 out[1].close();
+                clients[0].close();
+                clients[1].close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
