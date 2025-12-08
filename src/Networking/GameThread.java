@@ -2,11 +2,14 @@ package Networking;
 
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CyclicBarrier;
 
 import Acciones.Action;
 import GameObjects.Game;
 import Logic.TurnResolver;
+import XML.XMLGameManager;
 
 /**
  * Thread super simple del juego.
@@ -18,6 +21,7 @@ public class GameThread implements Runnable {
     private Action[] thisTurn = new Action[2];
     private Game game;
     private ObjectOutputStream[] out = new ObjectOutputStream[2];
+    private List<Action[]> gameHistory = new ArrayList<>(); //para almacenar en el XML un registro de partidas
     
     public GameThread(Socket[] clients) {
         this.clients = clients;
@@ -70,11 +74,20 @@ public class GameThread implements Runnable {
                 System.out.println("Tablero después de resolver:");
                 System.out.println(game.getBoard().toString());
                 
+                gameHistory.add(new Action[] {thisTurn[0], thisTurn[1]});
+                
                 barrier.await(); // Turno resuelto
             }
             
             // Fin
-            sendBoth("GAME_OVER: " + game.getResultSummary());
+            String result = game.getResultSummary();
+            sendBoth("GAME_OVER: " + result);
+            
+            System.out.println("\nGuardando partida en XML...");
+            XMLGameManager.saveGame(names[0], names[1], gameHistory, result);
+
+            
+            
             Thread.sleep(500);
             
         } catch (Exception e) {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT games (game*)>
+<!ELEMENT game (players, turns, result)>
+<!ATTLIST game 
+    id ID #REQUIRED
+    date CDATA #REQUIRED
+    duration CDATA #IMPLIED>
+
+<!ELEMENT players (white, black)>
+<!ELEMENT white (#PCDATA)>
+<!ELEMENT black (#PCDATA)>
+
+<!ELEMENT turns (turn+)>
+<!ELEMENT turn (whiteAction, blackAction)>
+<!ATTLIST turn number CDATA #REQUIRED>
+
+<!ELEMENT whiteAction EMPTY>
+<!ATTLIST whiteAction
+    type (MOVE|ATTACK) #REQUIRED
+    fromRow CDATA #REQUIRED
+    fromCol CDATA #REQUIRED
+    toRow CDATA #REQUIRED
+    toCol CDATA #REQUIRED
+    piece CDATA #REQUIRED>
+
+<!ELEMENT blackAction EMPTY>
+<!ATTLIST blackAction
+    type (MOVE|ATTACK) #REQUIRED
+    fromRow CDATA #REQUIRED
+    fromCol CDATA #REQUIRED
+    toRow CDATA #REQUIRED
+    toCol CDATA #REQUIRED
+    piece CDATA #REQUIRED>
+
+<!ELEMENT result (#PCDATA)>
+<!ATTLIST result winner (WHITE|BLACK|DRAW) #IMPLIED>
+
+

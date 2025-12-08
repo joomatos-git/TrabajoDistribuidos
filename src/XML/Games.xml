@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE games SYSTEM "Partida.dtd">
+<games>
+  <game id="game_1733695200000" date="2024-12-08 18:30:15">
+    <players>
+      <white>Albert</white>
+      <black>Juan</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction type="MOVE" fromRow="1" fromCol="4" toRow="3" toCol="4" piece="WP5"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="4" toRow="4" toCol="4" piece="BP5"/>
+      </turn>
+      <turn number="2">
+        <whiteAction type="MOVE" fromRow="0" fromCol="6" toRow="2" toCol="5" piece="WN2"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="1" toRow="5" toCol="2" piece="BN1"/>
+      </turn>
+      <turn number="3">
+        <whiteAction type="MOVE" fromRow="0" fromCol="5" toRow="3" toCol="2" piece="WB2"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="2" toRow="3" toCol="3" piece="BN1"/>
+      </turn>
+      <turn number="4">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="2" toRow="4" toCol="3" piece="WB2"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="3" toRow="5" toCol="3" piece="BQ"/>
+      </turn>
+      <turn number="5">
+        <whiteAction type="MOVE" fromRow="0" fromCol="3" toRow="4" toCol="3" piece="WQ"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="3" toRow="3" toCol="3" piece="BQ"/>
+      </turn>
+      <turn number="6">
+        <whiteAction type="ATTACK" fromRow="4" fromCol="3" toRow="3" toCol="3" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="6" toRow="5" toCol="5" piece="BN2"/>
+      </turn>
+      <turn number="7">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="3" toRow="6" toCol="3" piece="WQ"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="5" toRow="4" toCol="3" piece="BN2"/>
+      </turn>
+      <turn number="8">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="3" toRow="7" toCol="4" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="5" toRow="6" toCol="4" piece="BB2"/>
+      </turn>
+    </turns>
+    <result winner="WHITE">White wins! Black King captured.</result>
+  </game>
+  
+  <game id="game_1733698800000" date="2024-12-08 19:45:30">
+    <players>
+      <white>Maria</white>
+      <black>Pedro</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction type="MOVE" fromRow="1" fromCol="3" toRow="3" toCol="3" piece="WP4"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="3" toRow="4" toCol="3" piece="BP4"/>
+      </turn>
+      <turn number="2">
+        <whiteAction type="MOVE" fromRow="0" fromCol="2" toRow="3" toCol="5" piece="WB1"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="6" toRow="5" toCol="5" piece="BN2"/>
+      </turn>
+      <turn number="3">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="5" toRow="6" toCol="2" piece="WB1"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="5" toRow="4" toCol="2" piece="BB2"/>
+      </turn>
+      <turn number="4">
+        <whiteAction type="MOVE" fromRow="0" fromCol="3" toRow="4" toCol="7" piece="WQ"/>
+        <blackAction type="ATTACK" fromRow="4" fromCol="2" toRow="1" toCol="5" piece="BB2"/>
+      </turn>
+      <turn number="5">
+        <whiteAction type="ATTACK" fromRow="4" fromCol="7" toRow="6" toCol="5" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="4" toRow="6" toCol="4" piece="BK"/>
+      </turn>
+      <turn number="6">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="5" toRow="7" toCol="5" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="4" toRow="7" toCol="5" piece="BK"/>
+      </turn>
+    </turns>
+    <result winner="BLACK">Black wins! White Queen captured by King.</result>
+  </game>
+  
+  <game id="game_1733702400000" date="2024-12-08 20:50:45">
+    <players>
+      <white>Carlos</white>
+      <black>Sofia</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction type="MOVE" fromRow="1" fromCol="0" toRow="3" toCol="0" piece="WP1"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="7" toRow="4" toCol="7" piece="BP8"/>
+      </turn>
+      <turn number="2">
+        <whiteAction type="MOVE" fromRow="1" fromCol="1" toRow="3" toCol="1" piece="WP2"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="6" toRow="4" toCol="6" piece="BP7"/>
+      </turn>
+      <turn number="3">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="0" toRow="4" toCol="1" piece="WP1"/>
+        <blackAction type="ATTACK" fromRow="4" fromCol="7" toRow="3" toCol="6" piece="BP8"/>
+      </turn>
+      <turn number="4">
+        <whiteAction type="MOVE" fromRow="0" fromCol="1" toRow="2" toCol="2" piece="WN1"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="1" toRow="5" toCol="0" piece="BN1"/>
+      </turn>
+      <turn number="5">
+        <whiteAction type="ATTACK" fromRow="2" fromCol="2" toRow="4" toCol="1" piece="WN1"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="0" toRow="4" toCol="2" piece="BN1"/>
+      </turn>
+      <turn number="6">
+        <whiteAction type="ATTACK" fromRow="4" fromCol="1" toRow="6" toCol="2" piece="WN1"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="0" toRow="6" toCol="0" piece="BR1"/>
+      </turn>
+      <turn number="7">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="2" toRow="7" toCol="0" piece="WN1"/>
+        <blackAction type="ATTACK" fromRow="6" fromCol="0" toRow="6" toCol="1" piece="BR1"/>
+      </turn>
+      <turn number="8">
+        <whiteAction type="ATTACK" fromRow="7" fromCol="0" toRow="6" toCol="2" piece="WN1"/>
+        <blackAction type="ATTACK" fromRow="6" fromCol="1" toRow="1" toCol="1" piece="BR1"/>
+      </turn>
+      <turn number="9">
+        <whiteAction type="MOVE" fromRow="0" fromCol="4" toRow="1" toCol="3" piece="WK"/>
+        <blackAction type="ATTACK" fromRow="1" fromCol="1" toRow="1" toCol="4" piece="BR1"/>
+      </turn>
+      <turn number="10">
+        <whiteAction type="ATTACK" fromRow="1" fromCol="3" toRow="1" toCol="4" piece="WK"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="7" toRow="6" toCol="7" piece="BR2"/>
+      </turn>
+    </turns>
+    <result winner="DRAW">Draw - Both kings alive but stalemate.</result>
+  </game>
+  
+  <game id="game_1733706000000" date="2024-12-08 21:55:20">
+    <players>
+      <white>Laura</white>
+      <black>Miguel</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction type="MOVE" fromRow="1" fromCol="4" toRow="2" toCol="4" piece="WP5"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="5" toRow="5" toCol="5" piece="BP6"/>
+      </turn>
+      <turn number="2">
+        <whiteAction type="MOVE" fromRow="0" fromCol="5" toRow="3" toCol="2" piece="WB2"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="5" toRow="4" toCol="2" piece="BB2"/>
+      </turn>
+      <turn number="3">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="2" toRow="6" toCol="5" piece="WB2"/>
+        <blackAction type="ATTACK" fromRow="4" fromCol="2" toRow="1" toCol="5" piece="BB2"/>
+      </turn>
+      <turn number="4">
+        <whiteAction type="MOVE" fromRow="0" fromCol="3" toRow="3" toCol="0" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="4" toRow="6" toCol="5" piece="BK"/>
+      </turn>
+      <turn number="5">
+        <whiteAction type="ATTACK" fromRow="3" fromCol="0" toRow="6" toCol="0" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="5" toRow="7" toCol="5" piece="BK"/>
+      </turn>
+      <turn number="6">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="0" toRow="6" toCol="1" piece="WQ"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="3" toRow="6" toCol="2" piece="BQ"/>
+      </turn>
+      <turn number="7">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="1" toRow="7" toCol="1" piece="WQ"/>
+        <blackAction type="ATTACK" fromRow="6" fromCol="2" toRow="2" toCol="2" piece="BQ"/>
+      </turn>
+      <turn number="8">
+        <whiteAction type="ATTACK" fromRow="7" fromCol="1" toRow="7" toCol="6" piece="WQ"/>
+        <blackAction type="ATTACK" fromRow="2" fromCol="2" toRow="0" toCol="4" piece="BQ"/>
+      </turn>
+    </turns>
+    <result winner="BLACK">Black wins! White King captured.</result>
+  </game>
+  
+  <game id="game_1733709600000" date="2024-12-08 23:10:55">
+    <players>
+      <white>David</white>
+      <black>Ana</black>
+    </players>
+    <turns>
+      <turn number="1">
+        <whiteAction type="MOVE" fromRow="1" fromCol="2" toRow="3" toCol="2" piece="WP3"/>
+        <blackAction type="MOVE" fromRow="6" fromCol="2" toRow="4" toCol="2" piece="BP3"/>
+      </turn>
+      <turn number="2">
+        <whiteAction type="MOVE" fromRow="1" fromCol="6" toRow="3" toCol="6" piece="WP7"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="1" toRow="5" toCol="2" piece="BN1"/>
+      </turn>
+      <turn number="3">
+        <whiteAction type="MOVE" fromRow="0" fromCol="6" toRow="2" toCol="7" piece="WN2"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="2" toRow="3" toCol="1" piece="BN1"/>
+      </turn>
+      <turn number="4">
+        <whiteAction type="ATTACK" fromRow="2" fromCol="7" toRow="4" toCol="6" piece="WN2"/>
+        <blackAction type="MOVE" fromRow="7" fromCol="6" toRow="5" toCol="7" piece="BN2"/>
+      </turn>
+      <turn number="5">
+        <whiteAction type="ATTACK" fromRow="4" fromCol="6" toRow="6" toCol="7" piece="WN2"/>
+        <blackAction type="ATTACK" fromRow="5" fromCol="7" toRow="4" toCol="5" piece="BN2"/>
+      </turn>
+      <turn number="6">
+        <whiteAction type="ATTACK" fromRow="6" fromCol="7" toRow="7" toCol="5" piece="WN2"/>
+        <blackAction type="ATTACK" fromRow="4" fromCol="5" toRow="2" toCol="4" piece="BN2"/>
+      </turn>
+      <turn number="7">
+        <whiteAction type="MOVE" fromRow="0" fromCol="0" toRow="0" toCol="3" piece="WR1"/>
+        <blackAction type="ATTACK" fromRow="2" fromCol="4" toRow="0" toCol="3" piece="BN2"/>
+      </turn>
+      <turn number="8">
+        <whiteAction type="MOVE" fromRow="0" fromCol="4" toRow="0" toCol="2" piece="WK"/>
+        <blackAction type="ATTACK" fromRow="0" fromCol="3" toRow="0" toCol="2" piece="BN2"/>
+      </turn>
+    </turns>
+    <result winner="BLACK">Black wins! White King captured by Knight.</result>
+  </game>
+</games>
